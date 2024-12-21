@@ -31,6 +31,16 @@ const Players = () => {
       "What specific event is referenced in Jude 9, involving the Archangel Michael?",
       "According to the Book of Hebrews, Melchizedek is described as 'without father, without mother, without genealogy.' Why is he compared to Christ?",
       "In the Parable of the Ten Virgins, what did the foolish virgins fail to bring?",
+      "Which epistle warns against the teaching of Balaam and mentions the Nicolaitans?",
+      "Who was the Roman governor who sentenced Jesus to death?",
+      "What were the last words of Jesus on the cross according to the Gospel of John?",
+      "What is the last book of the Bible?",
+      "What were the names of Job’s three friends who came to 'comfort' him?",
+      "Which New Testament book contains the 'fruit of the Spirit' and what are they?",
+      "Who betrayed Jesus for 30 pieces of silver?",
+      "What was Jesus' first miracle?",
+      "What was Jesus' first miracle?",
+      "Complete the verse: 'Blessed are the poor in spirit, for theirs is the...'",
     ];
 
     shuffleArray(defaultQuestions);
