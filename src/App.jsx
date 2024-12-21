@@ -7,7 +7,8 @@ const Players = () => {
   const [askedQuestions, setAskedQuestions] = useState([]); // Store the indices of asked questions
   const [turn, setTurn] = useState('player1'); // Track whose turn it is
   const [scores, setScores] = useState({ player1: 0, player2: 0 }); // Store player scores
-  const [showModal, setShowModal] = useState(false); // To show the modal when 150 points is reached
+  const [showModal, setShowModal] = useState(false); // To show the modal when a set of 10 questions is finished
+  const [questionsAnswered, setQuestionsAnswered] = useState(0); // Track the number of questions answered
 
   useEffect(() => {
     const defaultQuestions = [
@@ -76,7 +77,15 @@ const Players = () => {
       return updatedScores;
     });
 
+    // Increment questions answered count
+    setQuestionsAnswered((prev) => prev + 1);
+
     if (newScore >= 150) {
+      setShowModal(true);
+    }
+
+    // Show modal every 10 questions answered
+    if (questionsAnswered + 1 === 10 || questionsAnswered + 1 === 20 || questionsAnswered + 1 === questions.length) {
       setShowModal(true);
     }
 
@@ -89,11 +98,6 @@ const Players = () => {
     } else {
       setShowModal(true); // Show modal if no more questions
     }
-  };
-
-  // Toggle visibility of the current question
-  const handleToggleQuestion = () => {
-    setIsQuestionVisible(!isQuestionVisible);
   };
 
   // Skip the current question and go to the next one
@@ -112,6 +116,7 @@ const Players = () => {
     setScores({ player1: 0, player2: 0 });
     setQuestionIndex(0);
     setAskedQuestions([]);
+    setQuestionsAnswered(0); // Reset the count of answered questions
   };
 
   // Close the modal
@@ -206,7 +211,7 @@ const Players = () => {
         {showModal && (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
             <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full">
-              <h2 className="text-2xl font-bold text-[#1C274C]">Game Over!</h2>
+              <h2 className="text-2xl font-bold text-[#1C274C]">Game Complete!</h2>
               <p className="text-xl text-[#1C274C] mt-4">
                 Congratulations to <span className="font-bold">{scores.player1 >= 150 ? players.player1 : players.player2}</span>!
               </p>
